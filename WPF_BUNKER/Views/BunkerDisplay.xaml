@@ -1,0 +1,153 @@
+﻿<UserControl x:Class="WPF_BUNKER.Views.BunkerDisplay"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:WPF_BUNKER.Views"
+             xmlns:viewmod="clr-namespace:WPF_BUNKER.ViewModels"
+             xmlns:views="clr-namespace:WPF_BUNKER.Views"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+
+    <UserControl.Resources >
+         <!--Style for the TextBlocks--> 
+        <Style TargetType="TextBlock">
+            <Setter Property="FontSize" Value="20"/>
+            <Setter Property="FontFamily" Value="Segoe UI"/>
+            <Setter Property="Foreground" Value="Black"/>
+            <Setter Property="Margin" Value="10"/>
+            <Setter Property="TextWrapping" Value="Wrap"/>
+        </Style>
+         <!--Style for the Button--> 
+        <Style TargetType="Button">
+            <Setter Property="Width" Value="150"/>
+            <Setter Property="Height" Value="50"/>
+            <Setter Property="FontFamily" Value="Segoe UI"/>
+            <Setter Property="FontSize" Value="18"/>
+            <Setter Property="Margin" Value="10"/>
+            <Setter Property="HorizontalAlignment" Value="Right"/>
+            <Setter Property="VerticalAlignment" Value="Top"/>
+            <Setter Property="Background" Value="#0C760B"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="Content" Value="Continue to Characters"/>
+            <Setter Property="Cursor" Value="Hand"/>
+            
+        </Style>
+        <!--Style for data grid-->
+        <Style x:Key="WrappedTextColumnStyle" TargetType="TextBlock">
+            <Setter Property="TextWrapping" Value="Wrap"/>
+        </Style>
+
+        <Style x:Key="HiddenTextColumnStyle" TargetType="TextBlock">
+            <Setter Property="Visibility" Value="Collapsed"/>
+            <Setter Property="TextWrapping" Value="Wrap"/>
+        </Style>
+
+        <Style x:Key="ShowOnClickStyle" TargetType="DataGridCell">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="DataGridCell">
+                        <Border Background="{TemplateBinding Background}"
+                        BorderBrush="{TemplateBinding BorderBrush}"
+                        BorderThickness="{TemplateBinding BorderThickness}">
+                            <ContentPresenter VerticalAlignment="Center"/>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsSelected" Value="False">
+                                <Setter Property="Background" Value="Transparent"/>
+                            </Trigger>
+                            <Trigger Property="IsSelected" Value="True">
+                                <Setter Property="Background" Value="LightBlue"/>
+                            </Trigger>
+                            <Trigger Property="IsSelected" Value="False">
+                                <Setter Property="Foreground" Value="White"/>
+                            </Trigger>
+                            <Trigger Property="IsSelected" Value="True">
+                                <Setter Property="Foreground" Value="Black"/>
+                            </Trigger>
+                            <EventTrigger RoutedEvent="PreviewMouseLeftButtonDown">
+                                <EventTrigger.Actions>
+                                    <BeginStoryboard>
+                                        <Storyboard>
+                                            <ColorAnimation Storyboard.TargetProperty="(Control.Background).(SolidColorBrush.Color)"
+                                                    To="LightBlue" Duration="0:0:0"/>
+                                        </Storyboard>
+                                    </BeginStoryboard>
+                                </EventTrigger.Actions>
+                            </EventTrigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+         <!--DataTemplate for Player Display--> 
+        <DataTemplate x:Key="PlayerDisplayTemplate" DataType="{x:Type viewmod:PlayerDisplayModel}">
+            <views:PlayerDisplay DataContext="{Binding}"/>
+        </DataTemplate>
+    </UserControl.Resources >
+    
+
+     <!--Original Grid layout--> 
+    <Grid Background="Beige">
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+
+         <!--Title for Apocalypse--> 
+        <TextBlock Name="tbApocalipse" Grid.Row="0" Grid.ColumnSpan="2" Text="Апокаліпсис" FontSize="30" FontWeight="Bold" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+         <!--Placeholder for Apocalypse Display--> 
+        <TextBlock Name="tbApocalipseDisplay" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" Grid.RowSpan="3" Text="Апокаліпсис to be displayed here" HorizontalAlignment="Center" Margin="70, 0, 50, 0"/>
+         <!--Title for Bunker--> 
+        <TextBlock Name="tbBunker" Grid.Row="0" Grid.Column="2" Grid.ColumnSpan="2" Text="Бункер" FontSize="30" FontWeight="Bold" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+         <!--Placeholder for Bunker Display--> 
+        <TextBlock Name="tbBunkerDisplay" Grid.Row="1"  Grid.RowSpan="2" Grid.Column="2" Grid.ColumnSpan="2" Text="Bunker to be displayed here" HorizontalAlignment="Center" Margin="50, 0, 70, 0"/>
+
+         <!--Button to Continue--> 
+        <Button Name="btnContinue" Grid.Row="3" Grid.Column="3" Margin="20" Content="До персонажів!" VerticalAlignment="Bottom" Click="btnContinue_Click"/>
+
+
+        <!--Character-->
+        <Button Name="btnGenerateCard" Width="200" Height="50" VerticalAlignment="Bottom" Margin="0,0,0,30"
+HorizontalAlignment="Center" Content="Згенерувати картку" FontSize="20" 
+        Grid.Row ="3" Grid.ColumnSpan="4" Visibility="Hidden" Click="btnGenerateCard_Click"/>
+
+        <Button Name="btnEndTheGame" Width="200" Height="50" VerticalAlignment="Bottom" Margin="0,0,0,30"
+HorizontalAlignment="Center" Content="Закінчити гру" FontSize="20" 
+        Grid.Row ="3" Grid.ColumnSpan="4" Visibility="Hidden" Click="btnEndTheGame_Click"/>
+
+        <TextBlock Name="tbCharacterDisplay" Width="Auto" Height="Auto" VerticalAlignment="Top" Margin="30" Grid.Row="1" Grid.Column="1"
+   HorizontalAlignment="Center" Text="" FontSize="20" TextWrapping="Wrap"
+           Grid.ColumnSpan="2" Grid.RowSpan="3">
+        </TextBlock>
+
+        <DataGrid x:Name="playerDataGrid" AutoGenerateColumns="False" Grid.ColumnSpan="4" Grid.RowSpan="4" Visibility="Hidden" Margin="20,22,20,22">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Гравець" Binding="{Binding Player}" Width="*" ElementStyle="{StaticResource WrappedTextColumnStyle}"/>
+                <DataGridTextColumn Header="Стать та вік" Binding="{Binding SexAndAge}" Width="*" ElementStyle="{StaticResource WrappedTextColumnStyle}" CellStyle="{StaticResource ShowOnClickStyle}"/>
+                <DataGridTextColumn Header="Професія" Binding="{Binding Profession}" Width="*" ElementStyle="{StaticResource WrappedTextColumnStyle}" CellStyle="{StaticResource ShowOnClickStyle}"/>
+                <DataGridTextColumn Header="Здоров'я та зріст" Binding="{Binding HealthAndHeight}" Width="*" ElementStyle="{StaticResource WrappedTextColumnStyle}" CellStyle="{StaticResource ShowOnClickStyle}"/>
+                <DataGridTextColumn Header="Хобі" Binding="{Binding Hobby}" Width="*" ElementStyle="{StaticResource WrappedTextColumnStyle}" CellStyle="{StaticResource ShowOnClickStyle}"/>
+                <DataGridTextColumn Header="Інвентар" Binding="{Binding Inventory}" Width="*" ElementStyle="{StaticResource WrappedTextColumnStyle}" CellStyle="{StaticResource ShowOnClickStyle}"/>
+                <DataGridTextColumn Header="Додаткова інфa 1" Binding="{Binding AdditionalInfo1}" Width="*" ElementStyle="{StaticResource WrappedTextColumnStyle}" CellStyle="{StaticResource ShowOnClickStyle}"/>
+                <DataGridTextColumn Header="Додаткова інфa 2" Binding="{Binding AdditionalInfo2}" Width="*" ElementStyle="{StaticResource WrappedTextColumnStyle}" CellStyle="{StaticResource ShowOnClickStyle}"/>
+            </DataGrid.Columns>
+        </DataGrid>
+        <!--Timer-->
+        <Label x:Name="labelTime" Content="00:00:00" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="24" Grid.Column="1" Grid.Row="2"  Visibility="Collapsed"/>
+
+        <TextBlock Text="Твій персонаж:" FontSize="20" FontWeight="Bold" Margin="10" Visibility="Hidden" Panel.ZIndex="1"/>
+        <Image Name="imgCard" Panel.ZIndex="-1" Grid.ColumnSpan="4" Margin="0,88,0,88" Grid.RowSpan="4" Source="C:\Users\Анжеліка-Марія\source\repos\WPF_BUNKER\WPF_BUNKER\Images\Card.png" Stretch="Fill" Visibility="Collapsed" HorizontalAlignment="Center" Width="805"/>
+        
+    </Grid>
+</UserControl>
