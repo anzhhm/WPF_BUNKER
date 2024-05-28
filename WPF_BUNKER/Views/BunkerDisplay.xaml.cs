@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -12,15 +11,17 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
 using System.Windows.Shapes;
-using WPF_BUNKER.ViewModels;
 using WPF_BUNKER.Models;
+using WPF_BUNKER.ViewModels;
+
 
 namespace WPF_BUNKER.Views
 {
-    // Логіка взаємодії для BunkerDisplay.xaml
-    public partial class BunkerDisplay : UserControl
+    /// <summary>
+    /// Interaction logic for BunkerDisplay.xaml
+    /// </summary>
+    public partial class BunkerDisplay : Window
     {
         //Колекція, що зберігає гравців
         private ObservableCollection<CharacterViewModel> characters;
@@ -28,26 +29,34 @@ namespace WPF_BUNKER.Views
         // Лічильник створених персонажів
         private int characterCount = 0;
 
-       // BunkerDisplayViewModel _bunkerViewModel;
+        // Зберігає кількість гравців
+        private int numOfPlayers;
+        public int numOfSurvivors;
 
-        public BunkerDisplay()
+        public BunkerDisplay(int numOfPlayers, int numOfSurvivors)
         {
             InitializeComponent();
             // Підписка на подію зміни DataContext
-            // _bunkerViewModel = new BunkerDisplayViewModel();
             DataContextChanged += BunkerDisplay_DataContextChanged;
-           // DataContext = _bunkerViewModel;
-            characters = new ObservableCollection<CharacterViewModel>();
-            playerDataGrid.ItemsSource = characters;
-        }
 
-        // Обробник зміни DataContext
+            this.numOfPlayers = numOfPlayers;
+            this.numOfSurvivors = numOfSurvivors;
+            characters = new ObservableCollection<CharacterViewModel>();
+
+            // Створення нового генератора гри
+            GameGenerator newGame = new GameGenerator(numOfSurvivors);
+                // Генерація і відображення катаклізму
+                tbApocalipseDisplay.Text = newGame.GenerateCataclysm();
+                // Генерація і відображення бункера
+                tbBunkerDisplay.Text = newGame.GenerateBunker();
+                playerDataGrid.ItemsSource = characters;
+        }
         private void BunkerDisplay_DataContextChanged(object sender, DependencyPropertyChangedEventArgs e)
         {
             if (DataContext is BunkerDisplayModel model)
             {
                 // Отримання кількості виживших із DataContext
-                int numOfSurvivors = model.NumOfSurvivors;
+               // int numOfSurvivors = model.NumOfSurvivors;
 
                 // Створення нового генератора гри
                 GameGenerator newGame = new GameGenerator(numOfSurvivors);
@@ -57,7 +66,6 @@ namespace WPF_BUNKER.Views
                 tbBunkerDisplay.Text = newGame.GenerateBunker();
             }
         }
-
         // Обробник кліку на кнопку "Продовжити"
         private void btnContinue_Click(object sender, RoutedEventArgs e)
         {
@@ -71,24 +79,18 @@ namespace WPF_BUNKER.Views
             // Відображає новий UI
             btnGenerateCard.Visibility = Visibility.Visible;
 
-            // Підписка на подію зміни DataContext
-            DataContextChanged += BunkerDisplay_DataContextChanged;
         }
 
+        
         // Обробник кліку на кнопку "Згенерувати карту"
         private void btnGenerateCard_Click(object sender, RoutedEventArgs e)
         {
-            //List<CharacterViewModel> characters = new List<CharacterViewModel>();
-            if (DataContext is BunkerDisplayModel model)
-            {
-                int numOfPlayers = model.NumOfPlayers;
 
                 if (characterCount < numOfPlayers)
                 {
                     // Створення нового персонажа
                     Character newCharacter = new Character();
                     characterCount++;
-
 
                     string character = newCharacter.GenerateCharacter(characterCount);
                     // Відображення створеного персонажа
@@ -105,20 +107,17 @@ namespace WPF_BUNKER.Views
                     // Приховує кнопку генерації картки, коли всі персонажі створені
                     btnGenerateCard.Visibility = Visibility.Collapsed;
                     tbCharacterDisplay.Visibility = Visibility.Collapsed;
-                    btnEndTheGame.Visibility = Visibility.Visible;
                     imgCard.Visibility = Visibility.Collapsed;
 
                     // Показати табличку
                     playerDataGrid.Visibility = Visibility.Visible;
+                tbPlacesInBunker.Visibility= Visibility.Visible;
 
-                    // Відображає повідомлення про закінчення гри
-                    //tbCharacterDisplay.Text = "Гарної гри! \nНехай врятуються найкмітливіші!";
-                    //tbCharacterDisplay.FontSize = 50;
-                    //tbCharacterDisplay.Visibility = Visibility.Visible;
-                }
+                // Відображає повідомлення про закінчення гри
+                btnEndTheGame.Visibility = Visibility.Visible;
+
             }
         }
-
         // Обробник кліку на кнопку "Закінчити гру"
         private void btnEndTheGame_Click(object sender, RoutedEventArgs e)
         {
@@ -127,3 +126,4 @@ namespace WPF_BUNKER.Views
         }
     }
 }
+

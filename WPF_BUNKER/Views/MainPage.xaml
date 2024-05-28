@@ -34,9 +34,9 @@
             <Setter Property="Content" Value="Continue to Characters"/>
             <Setter Property="Cursor" Value="Hand"/>
         </Style>
-        <DataTemplate x:Name="BunkerDisplayTemplate" DataType="{x:Type viewmod:BunkerModel}">
+        <!--<DataTemplate x:Name="BunkerDisplayTemplate" DataType="{x:Type viewmod:BunkerModel}">
             <views:BunkerDisplay DataContext="{Binding}"/>
-        </DataTemplate>
+        </DataTemplate>-->
     </Window.Resources>
 
     <Grid  Background="Beige">
