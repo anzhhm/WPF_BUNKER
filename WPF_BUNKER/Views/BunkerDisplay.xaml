@@ -5,12 +5,12 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WPF_BUNKER.Views"
         mc:Ignorable="d"
-        Title="BunkerDisplay" Height="450" Width="800">
+        Title="BunkerDisplay" Height="1080" Width="1920">
     <Window.Resources>
         <Style TargetType="TextBlock">
             <Setter Property="FontSize" Value="20"/>
             <Setter Property="FontFamily" Value="Segoe UI"/>
-            <Setter Property="Foreground" Value="Black"/>
+            <Setter Property="Foreground" Value="AntiqueWhite"/>
             <Setter Property="Margin" Value="10"/>
             <Setter Property="TextWrapping" Value="Wrap"/>
         </Style>
@@ -23,8 +23,8 @@
             <Setter Property="Margin" Value="10"/>
             <Setter Property="HorizontalAlignment" Value="Right"/>
             <Setter Property="VerticalAlignment" Value="Top"/>
-            <Setter Property="Background" Value="#0C760B"/>
-            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="Background" Value="#116621"/>
+            <Setter Property="Foreground" Value="AntiqueWhite"/>
             <Setter Property="BorderThickness" Value="0"/>
             <Setter Property="Content" Value="Continue to Characters"/>
             <Setter Property="Cursor" Value="Hand"/>
@@ -39,47 +39,34 @@
             <Setter Property="Visibility" Value="Collapsed"/>
             <Setter Property="TextWrapping" Value="Wrap"/>
         </Style>
-
         <Style x:Key="ShowOnClickStyle" TargetType="DataGridCell">
             <Setter Property="Template">
                 <Setter.Value>
                     <ControlTemplate TargetType="DataGridCell">
                         <Border Background="{TemplateBinding Background}"
-                BorderBrush="{TemplateBinding BorderBrush}"
-                BorderThickness="{TemplateBinding BorderThickness}">
+                        BorderBrush="{TemplateBinding BorderBrush}"
+                        BorderThickness="{TemplateBinding BorderThickness}">
                             <ContentPresenter VerticalAlignment="Center"/>
                         </Border>
-                        <ControlTemplate.Triggers>
-                            <Trigger Property="IsSelected" Value="False">
-                                <Setter Property="Background" Value="Transparent"/>
-                            </Trigger>
-                            <Trigger Property="IsSelected" Value="True">
-                                <Setter Property="Background" Value="LightBlue"/>
-                            </Trigger>
-                            <Trigger Property="IsSelected" Value="False">
-                                <Setter Property="Foreground" Value="White"/>
-                            </Trigger>
-                            <Trigger Property="IsSelected" Value="True">
-                                <Setter Property="Foreground" Value="Black"/>
-                            </Trigger>
-                            <EventTrigger RoutedEvent="PreviewMouseLeftButtonDown">
-                                <EventTrigger.Actions>
-                                    <BeginStoryboard>
-                                        <Storyboard>
-                                            <ColorAnimation Storyboard.TargetProperty="(Control.Background).(SolidColorBrush.Color)"
-                                            To="LightBlue" Duration="0:0:0"/>
-                                        </Storyboard>
-                                    </BeginStoryboard>
-                                </EventTrigger.Actions>
-                            </EventTrigger>
-                        </ControlTemplate.Triggers>
                     </ControlTemplate>
                 </Setter.Value>
             </Setter>
+            <Setter Property="Foreground" Value="#2e1b0e"/>
+            <Setter Property="Background" Value="#2e1b0e"/>
         </Style>
-
-        <!--DataTemplate for Player Display-->
-
+        <Style TargetType="DataGridCell" x:Key="DataGridFirstRowCellStyle">
+            <Setter Property="Background" Value="#2e1b0e"/>
+            <Setter Property="Foreground" Value="AntiqueWhite"/>
+        </Style>
+        <!-- Define the style for the header -->
+        <Style TargetType="DataGridColumnHeader" x:Key="DataGridColumnHeaderStyle">
+            <Setter Property="Background" Value="#2e1b0e"/>
+            <Setter Property="Foreground" Value="AntiqueWhite"/>
+            <Setter Property="HorizontalAlignment" Value="Center"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+            <Setter Property="Padding" Value="50,5,50,5"/>
+            <Setter Property="BorderThickness" Value="0"/>
+        </Style>
     </Window.Resources>
 
     <Grid Background="Beige">
@@ -99,11 +86,11 @@
         <!--Title for Apocalypse-->
         <TextBlock Name="tbApocalipse" Grid.Row="0" Grid.ColumnSpan="2" Text="Апокаліпсис" FontSize="30" FontWeight="Bold" HorizontalAlignment="Center" VerticalAlignment="Center"/>
         <!--Placeholder for Apocalypse Display-->
-        <TextBlock Name="tbApocalipseDisplay" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" Grid.RowSpan="3" Text="Апокаліпсис to be displayed here" HorizontalAlignment="Center" Margin="70, 0, 50, 0"/>
+        <TextBlock Name="tbApocalipseDisplay" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" Grid.RowSpan="3" Text="Апокаліпсис to be displayed here" HorizontalAlignment="Center" Margin="100, 0, 50, 0"/>
         <!--Title for Bunker-->
         <TextBlock Name="tbBunker" Grid.Row="0" Grid.Column="2" Grid.ColumnSpan="2" Text="Бункер" FontSize="30" FontWeight="Bold" HorizontalAlignment="Center" VerticalAlignment="Center"/>
         <!--Placeholder for Bunker Display-->
-        <TextBlock Name="tbBunkerDisplay" Grid.Row="1"  Grid.RowSpan="2" Grid.Column="2" Grid.ColumnSpan="2" Text="Bunker to be displayed here" HorizontalAlignment="Center" Margin="50, 0, 70, 0"/>
+        <TextBlock Name="tbBunkerDisplay" Grid.Row="1"  Grid.RowSpan="2" Grid.Column="2" Grid.ColumnSpan="2" Text="Bunker to be displayed here" HorizontalAlignment="Center" Margin="50, 0, 100, 0"/>
 
         <!--Button to Continue-->
         <Button Name="btnContinue" Grid.Row="3" Grid.Column="3" Margin="20" Content="До персонажів!" VerticalAlignment="Bottom" Click="btnContinue_Click"/>
@@ -123,25 +110,30 @@ HorizontalAlignment="Center" Content="Закінчити гру" FontSize="20"
            Grid.ColumnSpan="2" Grid.RowSpan="3">
         </TextBlock>
 
-        <DataGrid x:Name="playerDataGrid" AutoGenerateColumns="False" Grid.ColumnSpan="4" Grid.RowSpan="4" Visibility="Collapsed" Margin="20,22,20,100">
+        <DataGrid x:Name="playerDataGrid" AutoGenerateColumns="False" Grid.ColumnSpan="4" Grid.RowSpan="4" Visibility="Visible" FontSize="25" Margin="40,22,40,100" Background="#2e1b0e">
+            <DataGrid.Resources>
+                
+            </DataGrid.Resources>
             <DataGrid.Columns>
-                <DataGridTextColumn Header="Гравець" Binding="{Binding Player}" Width="*" ElementStyle="{StaticResource WrappedTextColumnStyle}"/>
-                <DataGridTextColumn Header="Стать та вік" Binding="{Binding SexAndAge}" Width="*" ElementStyle="{StaticResource WrappedTextColumnStyle}" CellStyle="{StaticResource ShowOnClickStyle}"/>
-                <DataGridTextColumn Header="Професія" Binding="{Binding Profession}" Width="*" ElementStyle="{StaticResource WrappedTextColumnStyle}" CellStyle="{StaticResource ShowOnClickStyle}"/>
-                <DataGridTextColumn Header="Здоров'я та зріст" Binding="{Binding HealthAndHeight}" Width="*" ElementStyle="{StaticResource WrappedTextColumnStyle}" CellStyle="{StaticResource ShowOnClickStyle}"/>
-                <DataGridTextColumn Header="Хобі" Binding="{Binding Hobby}" Width="*" ElementStyle="{StaticResource WrappedTextColumnStyle}" CellStyle="{StaticResource ShowOnClickStyle}"/>
-                <DataGridTextColumn Header="Інвентар" Binding="{Binding Inventory}" Width="*" ElementStyle="{StaticResource WrappedTextColumnStyle}" CellStyle="{StaticResource ShowOnClickStyle}"/>
-                <DataGridTextColumn Header="Додаткова інфa 1" Binding="{Binding AdditionalInfo1}" Width="*" ElementStyle="{StaticResource WrappedTextColumnStyle}" CellStyle="{StaticResource ShowOnClickStyle}"/>
-                <DataGridTextColumn Header="Додаткова інфa 2" Binding="{Binding AdditionalInfo2}" Width="*" ElementStyle="{StaticResource WrappedTextColumnStyle}" CellStyle="{StaticResource ShowOnClickStyle}"/>
-            </DataGrid.Columns>
-        </DataGrid>
-        <!--Timer-->
-        <Label x:Name="labelTime" Content="00:00:00" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="24" Grid.Column="1" Grid.Row="2"  Visibility="Collapsed"/>
+                <DataGridTextColumn Header="Гравець" Binding="{Binding Player}" Width="*" ElementStyle="{StaticResource WrappedTextColumnStyle}" CellStyle="{StaticResource DataGridFirstRowCellStyle}" HeaderStyle="{StaticResource DataGridColumnHeaderStyle} "/>
+                <DataGridTextColumn Header="Стать та вік" Binding="{Binding SexAndAge}" Width="*" ElementStyle="{StaticResource WrappedTextColumnStyle}" CellStyle="{StaticResource ShowOnClickStyle}"  HeaderStyle="{StaticResource DataGridColumnHeaderStyle}"/>
+                <DataGridTextColumn Header="Професія" Binding="{Binding Profession}" Width="*" ElementStyle="{StaticResource WrappedTextColumnStyle}" CellStyle="{StaticResource ShowOnClickStyle}"  HeaderStyle="{StaticResource DataGridColumnHeaderStyle}"/>
+                <DataGridTextColumn Header="Здоров'я та зріст" Binding="{Binding HealthAndHeight}" Width="*" ElementStyle="{StaticResource WrappedTextColumnStyle}" CellStyle="{StaticResource ShowOnClickStyle}" HeaderStyle="{StaticResource DataGridColumnHeaderStyle}"/>
+                <DataGridTextColumn Header="Хобі" Binding="{Binding Hobby}" Width="*" ElementStyle="{StaticResource WrappedTextColumnStyle}" CellStyle="{StaticResource ShowOnClickStyle}" HeaderStyle="{StaticResource DataGridColumnHeaderStyle}"/>
+                <DataGridTextColumn Header="Інвентар" Binding="{Binding Inventory}" Width="*" ElementStyle="{StaticResource WrappedTextColumnStyle}" CellStyle="{StaticResource ShowOnClickStyle}" HeaderStyle="{StaticResource DataGridColumnHeaderStyle}"/>
+                <DataGridTextColumn Header="Додаткова інфa 1" Binding="{Binding AdditionalInfo1}" Width="*" ElementStyle="{StaticResource WrappedTextColumnStyle}" CellStyle="{StaticResource ShowOnClickStyle}" HeaderStyle="{StaticResource DataGridColumnHeaderStyle}"/>
+                <DataGridTextColumn Header="Додаткова інфa 2" Binding="{Binding AdditionalInfo2}" Width="*" ElementStyle="{StaticResource WrappedTextColumnStyle}" CellStyle="{StaticResource ShowOnClickStyle}" HeaderStyle="{StaticResource DataGridColumnHeaderStyle}"/>
+    </DataGrid.Columns>
+</DataGrid>
 
+        <!--Timer-->
+        <TextBlock x:Name="tbTime" Text="00:00:00"  HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="24" Grid.Column="1" Grid.Row="3"  Visibility="Visible" Foreground="AntiqueWhite"/>
+        
         <TextBlock Name="tbPlacesInBunker" Text="{Binding NumOfSurvivors, StringFormat='Кількість місць у бункері: {0}'}" FontSize="20" FontWeight="Bold" Margin="10,50,10,10" Grid.Column="0" Grid.Row="3" Visibility="Collapsed"/>
 
         <TextBlock Text="Твій персонаж:" FontSize="20" FontWeight="Bold" Margin="10" Visibility="Hidden" Panel.ZIndex="1"/>
         <Image Name="imgCard" Panel.ZIndex="-1" Grid.ColumnSpan="4" Margin="0,88,0,88" Grid.RowSpan="4" Source="C:\Users\Анжеліка-Марія\source\repos\WPF_BUNKER\WPF_BUNKER\Images\Card.png" Stretch="Fill" Visibility="Collapsed" HorizontalAlignment="Center" Width="805"/>
+        <Image Grid.ColumnSpan="4" Margin="-26,-88,-38,-78" Source="C:\Users\Анжеліка-Марія\source\repos\WPF_BUNKER\WPF_BUNKER\Images\Background2.png" Stretch="Fill" Grid.RowSpan="4" Panel.ZIndex="-1"/>
 
     </Grid>
 </Window>

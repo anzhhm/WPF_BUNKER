@@ -15,7 +15,7 @@
         <Style TargetType="TextBlock">
             <Setter Property="FontSize" Value="20"/>
             <Setter Property="FontFamily" Value="Segoe UI"/>
-            <Setter Property="Foreground" Value="Black"/>
+            <Setter Property="Foreground" Value="WhiteSmoke"/>
             <Setter Property="Margin" Value="10"/>
             <Setter Property="TextWrapping" Value="Wrap"/>
         </Style>
@@ -28,15 +28,13 @@
             <Setter Property="Margin" Value="10"/>
             <Setter Property="HorizontalAlignment" Value="Right"/>
             <Setter Property="VerticalAlignment" Value="Top"/>
-            <Setter Property="Background" Value="#0C760B"/>
+            <Setter Property="Background" Value="#116621"/>
             <Setter Property="Foreground" Value="White"/>
             <Setter Property="BorderThickness" Value="0"/>
             <Setter Property="Content" Value="Continue to Characters"/>
             <Setter Property="Cursor" Value="Hand"/>
         </Style>
-        <!--<DataTemplate x:Name="BunkerDisplayTemplate" DataType="{x:Type viewmod:BunkerModel}">
-            <views:BunkerDisplay DataContext="{Binding}"/>
-        </DataTemplate>-->
+        
     </Window.Resources>
 
     <Grid  Background="Beige">
@@ -51,19 +49,20 @@
             <ColumnDefinition/>
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
-        
+
         <Button Name="btnStartTheGame" Width="250" Height="90" VerticalAlignment="Bottom" Margin="0,0,0,15"
         HorizontalAlignment="Center" Content="Почати гру" FontSize="30" 
                 Grid.Row ="3" Grid.ColumnSpan="3" Click="btnStartTheGame_Click"/>
 
         <TextBlock Name="tbBunker" Width="Auto" Height="Auto" VerticalAlignment="Top" Margin="30"
-           HorizontalAlignment="Center" Text="БУНКЕР" FontSize="50" FontWeight="Bold" TextWrapping="Wrap"
+           HorizontalAlignment="Center" Text="БУНКЕР" FontSize="50" FontWeight="Bold" TextWrapping="Wrap" 
                    Grid.ColumnSpan="3" Grid.RowSpan="2"/>
         <TextBox Name="txtbNumOfPlayers" VerticalAlignment="Stretch" VerticalContentAlignment="Center" Text="Введи кількість гравців у грі..." Grid.Column="1" Grid.Row="1" FontWeight="Light"
           HorizontalAlignment="Stretch" Margin="20, 60,20,10" GotFocus="TextBox_GotFocus"/>
         <TextBox Name="txtbNumOfSurvivors" VerticalAlignment="Stretch" VerticalContentAlignment="Center" Text="Введи кількість місць у бункері..." Grid.Column="1" Grid.Row="2" FontWeight="Light"
           HorizontalAlignment="Stretch" Margin="20,10,20,60" GotFocus="TextBox_GotFocus"/>
 
-        <Button Name="btnRules" Content="Правила" HorizontalAlignment="Left" Margin="15,10,0,0" Height="56" Width="118" Click="btnRules_Click" Visibility="Visible" Grid.Row="0"/>
+        <Button Name="btnRules" Content="Правила" HorizontalAlignment="Left" Margin="15,10,0,0" Height="44" Width="100" Click="btnRules_Click" Visibility="Visible" Grid.Row="0"/>
+        <Image Grid.ColumnSpan="3" Margin="-38,-21,-38,-21" Grid.RowSpan="4" Source="C:\Users\Анжеліка-Марія\source\repos\WPF_BUNKER\WPF_BUNKER\Images\Background.png" Stretch="Fill" Panel.ZIndex="-1"/>
     </Grid>
 </Window>

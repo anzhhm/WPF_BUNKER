@@ -12,6 +12,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using System.Windows.Threading;
 using WPF_BUNKER.Models;
 using WPF_BUNKER.ViewModels;
 
@@ -38,6 +39,7 @@ namespace WPF_BUNKER.Views
             InitializeComponent();
             // Підписка на подію зміни DataContext
             DataContextChanged += BunkerDisplay_DataContextChanged;
+            playerDataGrid.PreviewMouseLeftButtonDown += PlayerDataGrid_PreviewMouseLeftButtonDown;
 
             this.numOfPlayers = numOfPlayers;
             this.numOfSurvivors = numOfSurvivors;
@@ -45,18 +47,18 @@ namespace WPF_BUNKER.Views
 
             // Створення нового генератора гри
             GameGenerator newGame = new GameGenerator(numOfSurvivors);
-                // Генерація і відображення катаклізму
-                tbApocalipseDisplay.Text = newGame.GenerateCataclysm();
-                // Генерація і відображення бункера
-                tbBunkerDisplay.Text = newGame.GenerateBunker();
-                playerDataGrid.ItemsSource = characters;
+            // Генерація і відображення катаклізму
+            tbApocalipseDisplay.Text = newGame.GenerateCataclysm();
+            // Генерація і відображення бункера
+            tbBunkerDisplay.Text = newGame.GenerateBunker();
+            playerDataGrid.ItemsSource = characters;
         }
         private void BunkerDisplay_DataContextChanged(object sender, DependencyPropertyChangedEventArgs e)
         {
             if (DataContext is BunkerDisplayModel model)
             {
                 // Отримання кількості виживших із DataContext
-               // int numOfSurvivors = model.NumOfSurvivors;
+                // int numOfSurvivors = model.NumOfSurvivors;
 
                 // Створення нового генератора гри
                 GameGenerator newGame = new GameGenerator(numOfSurvivors);
@@ -81,37 +83,37 @@ namespace WPF_BUNKER.Views
 
         }
 
-        
+
         // Обробник кліку на кнопку "Згенерувати карту"
         private void btnGenerateCard_Click(object sender, RoutedEventArgs e)
         {
 
-                if (characterCount < numOfPlayers)
-                {
-                    // Створення нового персонажа
-                    Character newCharacter = new Character();
-                    characterCount++;
+            if (characterCount < numOfPlayers)
+            {
+                // Створення нового персонажа
+                Character newCharacter = new Character();
+                characterCount++;
 
-                    string character = newCharacter.GenerateCharacter(characterCount);
-                    // Відображення створеного персонажа
-                    tbCharacterDisplay.Text = character;
-                    // Відображення картки
-                    imgCard.Visibility = Visibility.Visible;
+                string character = newCharacter.GenerateCharacter(characterCount);
+                // Відображення створеного персонажа
+                tbCharacterDisplay.Text = character;
+                // Відображення картки
+                imgCard.Visibility = Visibility.Visible;
 
-                    // Створення колекції гравців
-                    characters.Add(new CharacterViewModel(character));
-                }
+                // Створення колекції гравців
+                characters.Add(new CharacterViewModel(character));
+            }
 
-                else
-                {
-                    // Приховує кнопку генерації картки, коли всі персонажі створені
-                    btnGenerateCard.Visibility = Visibility.Collapsed;
-                    tbCharacterDisplay.Visibility = Visibility.Collapsed;
-                    imgCard.Visibility = Visibility.Collapsed;
+            else
+            {
+                // Приховує кнопку генерації картки, коли всі персонажі створені
+                btnGenerateCard.Visibility = Visibility.Collapsed;
+                tbCharacterDisplay.Visibility = Visibility.Collapsed;
+                imgCard.Visibility = Visibility.Collapsed;
 
-                    // Показати табличку
-                    playerDataGrid.Visibility = Visibility.Visible;
-                tbPlacesInBunker.Visibility= Visibility.Visible;
+                // Показати табличку
+                playerDataGrid.Visibility = Visibility.Visible;
+                tbPlacesInBunker.Visibility = Visibility.Visible;
 
                 // Відображає повідомлення про закінчення гри
                 btnEndTheGame.Visibility = Visibility.Visible;
@@ -124,6 +126,27 @@ namespace WPF_BUNKER.Views
             // Завершує роботу програми
             Environment.Exit(0);
         }
+        //private int time = 60;
+        //private DispatcherTimer timer;
+
+        private void PlayerDataGrid_PreviewMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            // Find the clicked cell
+            DependencyObject depObj = (DependencyObject)e.OriginalSource;
+            while (depObj != null && !(depObj is DataGridCell))
+            {
+                depObj = VisualTreeHelper.GetParent(depObj);
+            }
+
+            if (depObj is DataGridCell cell)
+            {
+                // Apply your desired style changes here
+                cell.Background = Brushes.AntiqueWhite; // Change background color
+                cell.Foreground = Brushes.Black; // Change foreground color
+                                                 // Add other style changes as needed
+            }
+        }
     }
 }
+
 
