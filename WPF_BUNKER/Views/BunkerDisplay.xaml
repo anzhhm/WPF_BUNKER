@@ -51,16 +51,16 @@
                     </ControlTemplate>
                 </Setter.Value>
             </Setter>
-            <Setter Property="Foreground" Value="#2e1b0e"/>
-            <Setter Property="Background" Value="#2e1b0e"/>
+            <Setter Property="Foreground" Value="#140c07"/>
+            <Setter Property="Background" Value="#140c07"/>
         </Style>
         <Style TargetType="DataGridCell" x:Key="DataGridFirstRowCellStyle">
-            <Setter Property="Background" Value="#2e1b0e"/>
+            <Setter Property="Background" Value="#140c07"/>
             <Setter Property="Foreground" Value="AntiqueWhite"/>
         </Style>
         <!-- Define the style for the header -->
         <Style TargetType="DataGridColumnHeader" x:Key="DataGridColumnHeaderStyle">
-            <Setter Property="Background" Value="#2e1b0e"/>
+            <Setter Property="Background" Value="#140c07"/>
             <Setter Property="Foreground" Value="AntiqueWhite"/>
             <Setter Property="HorizontalAlignment" Value="Center"/>
             <Setter Property="VerticalAlignment" Value="Center"/>
@@ -77,45 +77,45 @@
             <RowDefinition/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition/>
-            <ColumnDefinition/>
-            <ColumnDefinition/>
-            <ColumnDefinition/>
+            <ColumnDefinition Width="480*"/>
+            <ColumnDefinition Width="480*"/>
+            <ColumnDefinition Width="480*"/>
+            <ColumnDefinition Width="276*"/>
+            <ColumnDefinition Width="41*"/>
+            <ColumnDefinition Width="163*"/>
         </Grid.ColumnDefinitions>
 
         <!--Title for Apocalypse-->
-        <TextBlock Name="tbApocalipse" Grid.Row="0" Grid.ColumnSpan="2" Text="Апокаліпсис" FontSize="30" FontWeight="Bold" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+        <TextBlock Name="tbApocalipse" Grid.ColumnSpan="2" Text="Апокаліпсис" FontSize="30" FontWeight="Bold" HorizontalAlignment="Center" VerticalAlignment="Center"/>
         <!--Placeholder for Apocalypse Display-->
-        <TextBlock Name="tbApocalipseDisplay" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" Grid.RowSpan="3" Text="Апокаліпсис to be displayed here" HorizontalAlignment="Center" Margin="100, 0, 50, 0"/>
+        <TextBlock Name="tbApocalipseDisplay" Grid.Column="0" Grid.ColumnSpan="2" Grid.RowSpan="4" Text="Апокаліпсис to be displayed here" HorizontalAlignment="Left" Margin="150,266,0,0"/>
         <!--Title for Bunker-->
-        <TextBlock Name="tbBunker" Grid.Row="0" Grid.Column="2" Grid.ColumnSpan="2" Text="Бункер" FontSize="30" FontWeight="Bold" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+        <TextBlock Name="tbBunker" Grid.Column="2" Grid.ColumnSpan="2" Text="Бункер" FontSize="30" FontWeight="Bold" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="428,0,0,0"/>
         <!--Placeholder for Bunker Display-->
-        <TextBlock Name="tbBunkerDisplay" Grid.Row="1"  Grid.RowSpan="2" Grid.Column="2" Grid.ColumnSpan="2" Text="Bunker to be displayed here" HorizontalAlignment="Center" Margin="50, 0, 100, 0"/>
+        <TextBlock Name="tbBunkerDisplay"  Grid.RowSpan="3" Grid.Column="2" Grid.ColumnSpan="2" Text="Bunker to be displayed here" HorizontalAlignment="Left" Margin="150,266,0,0"/>
 
         <!--Button to Continue-->
-        <Button Name="btnContinue" Grid.Row="3" Grid.Column="3" Margin="20" Content="До персонажів!" VerticalAlignment="Bottom" Click="btnContinue_Click"/>
+        <Button Name="btnContinue" Grid.Row="3" Grid.Column="4" Margin="0,0,20,20" Content="До персонажів!" VerticalAlignment="Bottom" Click="btnContinue_Click" Grid.ColumnSpan="2"/>
 
 
         <!--Character-->
-        <Button Name="btnGenerateCard" Width="200" Height="50" VerticalAlignment="Bottom" Margin="0,0,0,30"
+        <Button Name="btnGenerateCard" Width="200" Height="50" Margin="0,83,0,0"
 HorizontalAlignment="Center" Content="Згенерувати картку" FontSize="20" 
-        Grid.Row ="3" Grid.ColumnSpan="4" Visibility="Hidden" Click="btnGenerateCard_Click"/>
+        Grid.Row ="3" Grid.ColumnSpan="2" Visibility="Hidden" Click="btnGenerateCard_Click" Grid.Column="1"/>
 
-        <Button Name="btnEndTheGame" Width="200" Height="50" VerticalAlignment="Bottom" Margin="0,0,0,30"
-HorizontalAlignment="Center" Content="Закінчити гру" FontSize="20" 
-        Grid.Row ="3" Grid.ColumnSpan="4" Visibility="Hidden" Click="btnEndTheGame_Click"/>
+        <Button Name="btnEndTheGame" Width="200" Height="50" VerticalAlignment="Bottom" Margin="275,0,0,20"
+HorizontalAlignment="Left" Content="Закінчити гру" FontSize="20" 
+        Grid.Row ="3" Visibility="Collapsed" Click="btnEndTheGame_Click" Grid.Column="3" Grid.ColumnSpan="3"/>
 
-        <TextBlock Name="tbCharacterDisplay" Width="Auto" Height="Auto" VerticalAlignment="Top" Margin="30" Grid.Row="1" Grid.Column="1"
-   HorizontalAlignment="Center" Text="" FontSize="20" TextWrapping="Wrap"
-           Grid.ColumnSpan="2" Grid.RowSpan="3">
-        </TextBlock>
+        <TextBlock Name="tbCharacterDisplay" Width="Auto" Height="Auto" VerticalAlignment="Top" Margin="0,30,0,0" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2" Grid.RowSpan="2"
+   HorizontalAlignment="Center" Text="" FontSize="20" TextWrapping="Wrap"/>
 
-        <DataGrid x:Name="playerDataGrid" AutoGenerateColumns="False" Grid.ColumnSpan="4" Grid.RowSpan="4" Visibility="Visible" FontSize="25" Margin="40,22,40,100" Background="#2e1b0e">
+        <DataGrid x:Name="playerDataGrid" AutoGenerateColumns="False" Grid.ColumnSpan="6" Grid.RowSpan="4" Visibility="Collapsed" FontSize="15" Margin="40,70,40,100" Background="#140c07">
             <DataGrid.Resources>
-                
+
             </DataGrid.Resources>
             <DataGrid.Columns>
-                <DataGridTextColumn Header="Гравець" Binding="{Binding Player}" Width="*" ElementStyle="{StaticResource WrappedTextColumnStyle}" CellStyle="{StaticResource DataGridFirstRowCellStyle}" HeaderStyle="{StaticResource DataGridColumnHeaderStyle} "/>
+                <DataGridTextColumn Header="Гравець" Binding="{Binding Player}" Width="*" ElementStyle="{StaticResource WrappedTextColumnStyle}"  CellStyle="{StaticResource DataGridFirstRowCellStyle}"  HeaderStyle="{StaticResource DataGridColumnHeaderStyle}"/>
                 <DataGridTextColumn Header="Стать та вік" Binding="{Binding SexAndAge}" Width="*" ElementStyle="{StaticResource WrappedTextColumnStyle}" CellStyle="{StaticResource ShowOnClickStyle}"  HeaderStyle="{StaticResource DataGridColumnHeaderStyle}"/>
                 <DataGridTextColumn Header="Професія" Binding="{Binding Profession}" Width="*" ElementStyle="{StaticResource WrappedTextColumnStyle}" CellStyle="{StaticResource ShowOnClickStyle}"  HeaderStyle="{StaticResource DataGridColumnHeaderStyle}"/>
                 <DataGridTextColumn Header="Здоров'я та зріст" Binding="{Binding HealthAndHeight}" Width="*" ElementStyle="{StaticResource WrappedTextColumnStyle}" CellStyle="{StaticResource ShowOnClickStyle}" HeaderStyle="{StaticResource DataGridColumnHeaderStyle}"/>
@@ -123,17 +123,18 @@ HorizontalAlignment="Center" Content="Закінчити гру" FontSize="20"
                 <DataGridTextColumn Header="Інвентар" Binding="{Binding Inventory}" Width="*" ElementStyle="{StaticResource WrappedTextColumnStyle}" CellStyle="{StaticResource ShowOnClickStyle}" HeaderStyle="{StaticResource DataGridColumnHeaderStyle}"/>
                 <DataGridTextColumn Header="Додаткова інфa 1" Binding="{Binding AdditionalInfo1}" Width="*" ElementStyle="{StaticResource WrappedTextColumnStyle}" CellStyle="{StaticResource ShowOnClickStyle}" HeaderStyle="{StaticResource DataGridColumnHeaderStyle}"/>
                 <DataGridTextColumn Header="Додаткова інфa 2" Binding="{Binding AdditionalInfo2}" Width="*" ElementStyle="{StaticResource WrappedTextColumnStyle}" CellStyle="{StaticResource ShowOnClickStyle}" HeaderStyle="{StaticResource DataGridColumnHeaderStyle}"/>
-    </DataGrid.Columns>
-</DataGrid>
+            </DataGrid.Columns>
+        </DataGrid>
 
         <!--Timer-->
-        <TextBlock x:Name="tbTime" Text="00:00:00"  HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="24" Grid.Column="1" Grid.Row="3"  Visibility="Visible" Foreground="AntiqueWhite"/>
-        
+        <TextBlock x:Name="tbTime" Text="00:00:00"  HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="24" Grid.Column="1" Grid.Row="3"  Visibility="Collapsed" Foreground="AntiqueWhite"/>
+
         <TextBlock Name="tbPlacesInBunker" Text="{Binding NumOfSurvivors, StringFormat='Кількість місць у бункері: {0}'}" FontSize="20" FontWeight="Bold" Margin="10,50,10,10" Grid.Column="0" Grid.Row="3" Visibility="Collapsed"/>
 
-        <TextBlock Text="Твій персонаж:" FontSize="20" FontWeight="Bold" Margin="10" Visibility="Hidden" Panel.ZIndex="1"/>
-        <Image Name="imgCard" Panel.ZIndex="-1" Grid.ColumnSpan="4" Margin="0,88,0,88" Grid.RowSpan="4" Source="C:\Users\Анжеліка-Марія\source\repos\WPF_BUNKER\WPF_BUNKER\Images\Card.png" Stretch="Fill" Visibility="Collapsed" HorizontalAlignment="Center" Width="805"/>
-        <Image Grid.ColumnSpan="4" Margin="-26,-88,-38,-78" Source="C:\Users\Анжеліка-Марія\source\repos\WPF_BUNKER\WPF_BUNKER\Images\Background2.png" Stretch="Fill" Grid.RowSpan="4" Panel.ZIndex="-1"/>
+        <TextBlock Text="Твій персонаж:" FontSize="20" FontWeight="Bold" Margin="10,10,10,10" Visibility="Hidden" Panel.ZIndex="1"/>
+        <Image Name="imgCard" Panel.ZIndex="-1" Grid.ColumnSpan="2" Margin="0,88,0,88" Grid.RowSpan="4" Source="C:\Users\Анжеліка-Марія\source\repos\WPF_BUNKER\WPF_BUNKER\Images\Card.png" Stretch="Fill" Visibility="Collapsed" HorizontalAlignment="Center" Width="804" Grid.Column="1"/>
+        <Image Grid.ColumnSpan="6" Margin="-26,-88,-38,-78" Source="C:\Users\Анжеліка-Марія\source\repos\WPF_BUNKER\WPF_BUNKER\Images\Background2.png" Stretch="Fill" Grid.RowSpan="4" Panel.ZIndex="-1"/>
+        <Button x:Name="btnGameInfo" Content="Нагадайте умови гри" Grid.Column="4" HorizontalAlignment="Left" Margin="14,-32,0,0" Grid.ColumnSpan="2" Click="btnGameInfo_Click"/>
 
     </Grid>
 </Window>

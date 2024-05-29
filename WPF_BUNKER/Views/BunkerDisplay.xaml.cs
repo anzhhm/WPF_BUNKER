@@ -34,6 +34,9 @@ namespace WPF_BUNKER.Views
         private int numOfPlayers;
         public int numOfSurvivors;
 
+        public string cataclysm;
+        public string bunker;
+
         public BunkerDisplay(int numOfPlayers, int numOfSurvivors)
         {
             InitializeComponent();
@@ -63,9 +66,11 @@ namespace WPF_BUNKER.Views
                 // Створення нового генератора гри
                 GameGenerator newGame = new GameGenerator(numOfSurvivors);
                 // Генерація і відображення катаклізму
-                tbApocalipseDisplay.Text = newGame.GenerateCataclysm();
+                cataclysm = newGame.GenerateCataclysm();
+                tbApocalipseDisplay.Text = cataclysm;
                 // Генерація і відображення бункера
-                tbBunkerDisplay.Text = newGame.GenerateBunker();
+                bunker = newGame.GenerateBunker();
+                tbBunkerDisplay.Text = bunker;
             }
         }
         // Обробник кліку на кнопку "Продовжити"
@@ -143,8 +148,16 @@ namespace WPF_BUNKER.Views
                 // Apply your desired style changes here
                 cell.Background = Brushes.AntiqueWhite; // Change background color
                 cell.Foreground = Brushes.Black; // Change foreground color
-                                                 // Add other style changes as needed
             }
+        }
+
+        private void btnGameInfo_Click(object sender, RoutedEventArgs e)
+        {
+            MessageBox.Show($"Кількість місць у бункері: {numOfSurvivors}" +
+                $"\nБункер:" +
+                $"\n{bunker}" +
+                $"\nАпокаліпсис:" +
+                $"\n{cataclysm}");
         }
     }
 }
