@@ -41,7 +41,6 @@ namespace WPF_BUNKER.Views
         {
             InitializeComponent();
             // Підписка на подію зміни DataContext
-            DataContextChanged += BunkerDisplay_DataContextChanged;
             playerDataGrid.PreviewMouseLeftButtonDown += PlayerDataGrid_PreviewMouseLeftButtonDown;
 
             this.numOfPlayers = numOfPlayers;
@@ -51,28 +50,14 @@ namespace WPF_BUNKER.Views
             // Створення нового генератора гри
             GameGenerator newGame = new GameGenerator(numOfSurvivors);
             // Генерація і відображення катаклізму
-            tbApocalipseDisplay.Text = newGame.GenerateCataclysm();
+            cataclysm = newGame.GenerateCataclysm();
+            tbApocalipseDisplay.Text = cataclysm;
             // Генерація і відображення бункера
-            tbBunkerDisplay.Text = newGame.GenerateBunker();
+            bunker = newGame.GenerateBunker();
+            tbBunkerDisplay.Text = bunker;
             playerDataGrid.ItemsSource = characters;
         }
-        private void BunkerDisplay_DataContextChanged(object sender, DependencyPropertyChangedEventArgs e)
-        {
-            if (DataContext is BunkerDisplayModel model)
-            {
-                // Отримання кількості виживших із DataContext
-                // int numOfSurvivors = model.NumOfSurvivors;
-
-                // Створення нового генератора гри
-                GameGenerator newGame = new GameGenerator(numOfSurvivors);
-                // Генерація і відображення катаклізму
-                cataclysm = newGame.GenerateCataclysm();
-                tbApocalipseDisplay.Text = cataclysm;
-                // Генерація і відображення бункера
-                bunker = newGame.GenerateBunker();
-                tbBunkerDisplay.Text = bunker;
-            }
-        }
+      
         // Обробник кліку на кнопку "Продовжити"
         private void btnContinue_Click(object sender, RoutedEventArgs e)
         {
@@ -85,9 +70,7 @@ namespace WPF_BUNKER.Views
 
             // Відображає новий UI
             btnGenerateCard.Visibility = Visibility.Visible;
-
         }
-
 
         // Обробник кліку на кнопку "Згенерувати карту"
         private void btnGenerateCard_Click(object sender, RoutedEventArgs e)
@@ -154,10 +137,10 @@ namespace WPF_BUNKER.Views
         private void btnGameInfo_Click(object sender, RoutedEventArgs e)
         {
             MessageBox.Show($"Кількість місць у бункері: {numOfSurvivors}" +
-                $"\nБункер:" +
-                $"\n{bunker}" +
-                $"\nАпокаліпсис:" +
-                $"\n{cataclysm}");
+                $"\n\nБункер:" +
+                $"\n\n{bunker}" +
+                $"\n\nАпокаліпсис:" +
+                $"\n\n{cataclysm}");
         }
     }
 }

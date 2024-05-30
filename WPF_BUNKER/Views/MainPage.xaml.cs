@@ -45,10 +45,6 @@ namespace WPF_BUNKER.Views
                             numOfPlayers = int.Parse(txtbNumOfPlayers.Text);
                             numOfSurvivors = int.Parse(txtbNumOfSurvivors.Text);
 
-                            // Створює нову модель відображення для гри з вказаними параметрами
-                            //var bunkerDisplayModel = new BunkerDisplayModel(numOfPlayers, numOfSurvivors);
-                            //DataContext = bunkerDisplayModel;
-                            // Create an instance of BunkerDisplayModel
                             try
                             {
                                 var bunkerDisplay = new BunkerDisplay(numOfPlayers, numOfSurvivors);
@@ -60,9 +56,6 @@ namespace WPF_BUNKER.Views
                                 // Handle the exception as needed
                                 MessageBox.Show($"An error occurred: {ex.Message}", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
                             }
-
-                            // Set the DataContext of the main window to the BunkerDisplayModel instance
-                            //this.DataContext = bunkerDisplay;
                         }
                         else
                         {
