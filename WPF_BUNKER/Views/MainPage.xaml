@@ -8,7 +8,9 @@
         xmlns:views ="clr-namespace:WPF_BUNKER.Views"
         xmlns:models ="clr-namespace:WPF_BUNKER.Models"
         mc:Ignorable="d"
-        Title="MainPage" Height="450" Width="800">
+        Title="MainPage" Height="450" Width="800"
+        MinWidth="800" MinHeight="450"
+        MaxWidth="800" MaxHeight="450">
 
     <Window.Resources>
         <!-- Style for the TextBlocks -->

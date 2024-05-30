@@ -118,7 +118,7 @@ namespace WPF_BUNKER.Views
 
                 // Показати табличку
                 playerDataGrid.Visibility = Visibility.Visible;
-                tbPlacesInBunker.Visibility = Visibility.Visible;
+                btnGameInfo.Visibility = Visibility.Visible;
 
                 // Відображає повідомлення про закінчення гри
                 btnEndTheGame.Visibility = Visibility.Visible;
