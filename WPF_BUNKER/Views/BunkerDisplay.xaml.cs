@@ -137,9 +137,9 @@ namespace WPF_BUNKER.Views
         private void btnGameInfo_Click(object sender, RoutedEventArgs e)
         {
             MessageBox.Show($"Кількість місць у бункері: {numOfSurvivors}" +
-                $"\n\nБункер:" +
+                $"\n\n~Бункер~:" +
                 $"\n\n{bunker}" +
-                $"\n\nАпокаліпсис:" +
+                $"\n\n~Апокаліпсис~:" +
                 $"\n\n{cataclysm}");
         }
     }

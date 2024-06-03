@@ -66,7 +66,7 @@
             <Setter Property="Foreground" Value="AntiqueWhite"/>
             <Setter Property="HorizontalAlignment" Value="Center"/>
             <Setter Property="VerticalAlignment" Value="Center"/>
-            <Setter Property="Padding" Value="50,5,50,5"/>
+            <Setter Property="Padding" Value="30,5,30,5"/>
             <Setter Property="Content" Value="Wrap"/>
             <Setter Property="BorderThickness" Value="0"/>
         </Style>
@@ -125,12 +125,12 @@ HorizontalAlignment="Left" Content="Закінчити гру" FontSize="20"
 
             </DataGrid.Resources>
             <DataGrid.Columns>
-                <DataGridTextColumn Header="     Гравець     " Binding="{Binding Player}" Width="*" ElementStyle="{StaticResource WrappedTextColumnStyle}"  CellStyle="{StaticResource DataGridFirstRowCellStyle}"  HeaderStyle="{StaticResource DataGridColumnHeaderStyle}"/>
-                <DataGridTextColumn Header="   Стать та вік  " Binding="{Binding SexAndAge}" Width="*" ElementStyle="{StaticResource WrappedTextColumnStyle}" CellStyle="{StaticResource ShowOnClickStyle}"  HeaderStyle="{StaticResource DataGridColumnHeaderStyle}"/>
-                <DataGridTextColumn Header="     Професія    " Binding="{Binding Profession}" Width="*" ElementStyle="{StaticResource WrappedTextColumnStyle}" CellStyle="{StaticResource ShowOnClickStyle}"  HeaderStyle="{StaticResource DataGridColumnHeaderStyle}"/>
-                <DataGridTextColumn Header="Здоров'я та зріст" Binding="{Binding HealthAndHeight}" Width="*" ElementStyle="{StaticResource WrappedTextColumnStyle}" CellStyle="{StaticResource ShowOnClickStyle}" HeaderStyle="{StaticResource DataGridColumnHeaderStyle}"/>
-                <DataGridTextColumn Header="      Хобі       " Binding="{Binding Hobby}" Width="*" ElementStyle="{StaticResource WrappedTextColumnStyle}" CellStyle="{StaticResource ShowOnClickStyle}" HeaderStyle="{StaticResource DataGridColumnHeaderStyle}"/>
-                <DataGridTextColumn Header="     Інвентар    " Binding="{Binding Inventory}" Width="*" ElementStyle="{StaticResource WrappedTextColumnStyle}" CellStyle="{StaticResource ShowOnClickStyle}" HeaderStyle="{StaticResource DataGridColumnHeaderStyle}"/>
+                <DataGridTextColumn Header="         Гравець        " Binding="{Binding Player}" Width="*" ElementStyle="{StaticResource WrappedTextColumnStyle}"  CellStyle="{StaticResource DataGridFirstRowCellStyle}"  HeaderStyle="{StaticResource DataGridColumnHeaderStyle}"/>
+                <DataGridTextColumn Header="      Стать та вік     " Binding="{Binding SexAndAge}" Width="*" ElementStyle="{StaticResource WrappedTextColumnStyle}" CellStyle="{StaticResource ShowOnClickStyle}"  HeaderStyle="{StaticResource DataGridColumnHeaderStyle}"/>
+                <DataGridTextColumn Header="         Професія       " Binding="{Binding Profession}" Width="*" ElementStyle="{StaticResource WrappedTextColumnStyle}" CellStyle="{StaticResource ShowOnClickStyle}"  HeaderStyle="{StaticResource DataGridColumnHeaderStyle}"/>
+                <DataGridTextColumn Header=" Здоров'я та зріст " Binding="{Binding HealthAndHeight}" Width="*" ElementStyle="{StaticResource WrappedTextColumnStyle}" CellStyle="{StaticResource ShowOnClickStyle}" HeaderStyle="{StaticResource DataGridColumnHeaderStyle}"/>
+                <DataGridTextColumn Header="           Хобі            " Binding="{Binding Hobby}" Width="*" ElementStyle="{StaticResource WrappedTextColumnStyle}" CellStyle="{StaticResource ShowOnClickStyle}" HeaderStyle="{StaticResource DataGridColumnHeaderStyle}"/>
+                <DataGridTextColumn Header="         Інвентар        " Binding="{Binding Inventory}" Width="*" ElementStyle="{StaticResource WrappedTextColumnStyle}" CellStyle="{StaticResource ShowOnClickStyle}" HeaderStyle="{StaticResource DataGridColumnHeaderStyle}"/>
                 <DataGridTextColumn Header="Додаткова інфa 1 " Binding="{Binding AdditionalInfo1}" Width="*" ElementStyle="{StaticResource WrappedTextColumnStyle}" CellStyle="{StaticResource ShowOnClickStyle}" HeaderStyle="{StaticResource DataGridColumnHeaderStyle}"/>
                 <DataGridTextColumn Header="Додаткова інфa 2 " Binding="{Binding AdditionalInfo2}" Width="*" ElementStyle="{StaticResource WrappedTextColumnStyle}" CellStyle="{StaticResource ShowOnClickStyle}" HeaderStyle="{StaticResource DataGridColumnHeaderStyle}"/>
             </DataGrid.Columns>
@@ -138,8 +138,6 @@ HorizontalAlignment="Left" Content="Закінчити гру" FontSize="20"
 
         <!--Timer-->
         <TextBlock x:Name="tbTime" Text="00:00:00"  HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="24" Grid.Column="1" Grid.Row="3"  Visibility="Collapsed" Foreground="AntiqueWhite" Height="0" Width="0"/>
-
-        <!--<TextBlock Name="tbPlacesInBunker" Text="{Binding NumOfSurvivors, StringFormat='Кількість місць у бункері: {0}'}" FontSize="20" FontWeight="Bold" Margin="10,50,10,10" Grid.Column="0" Grid.Row="3" Visibility="Collapsed"/>-->
 
         <TextBlock Text="Твій персонаж:" FontSize="20" FontWeight="Bold" Margin="10,10,10,10" Visibility="Hidden" Panel.ZIndex="1"/>
         <Image Name="imgCard" Panel.ZIndex="-1" Grid.ColumnSpan="2" Margin="0,88,0,88" Grid.RowSpan="4" Source="C:\Users\Анжеліка-Марія\source\repos\WPF_BUNKER\WPF_BUNKER\Images\Card.png" Stretch="Fill" Visibility="Collapsed" HorizontalAlignment="Center" Width="804" Grid.Column="1"/>

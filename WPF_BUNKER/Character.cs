@@ -30,13 +30,13 @@ namespace WPF_BUNKER
 
             // Гравець
             string character = $"Гравець {characterCount}" +
-        $"\nСтать та вік:\t\t{ReadRandomLine(sexFilePath)}, {ReadRandomLine(ageFilePath)} років" +
-$"\nПрофесія:\t\t{ReadRandomLine(professionFilePath)} ({ReadRandomLine(levelFilePath)})" +
-$"\nЗдоров'я та зріст:\t\t{ReadRandomLine(healthFilePath)}, {ReadRandomLine(heightFilePath)} см" +
-$"\nХобі:\t\t\t{ReadRandomLine(hobbyFilePath)}" +
-$"\nІнвентар:\t\t{ReadRandomLine(inventoryFilePath)}" +
-$"\nДодаткова інформація 1:\t{ReadRandomLine(additionalInfoFilePath)}" +
-$"\nДодаткова інформація 2:\t{ReadRandomLine(additionalInfoFilePath)}";
+            $"\nСтать та вік:\t\t{ReadRandomLine(sexFilePath)}, {ReadRandomLine(ageFilePath)} років" +
+            $"\nПрофесія:\t\t{ReadRandomLine(professionFilePath)} ({ReadRandomLine(levelFilePath)})" +
+            $"\nЗдоров'я та зріст:\t\t{ReadRandomLine(healthFilePath)}, {ReadRandomLine(heightFilePath)} см" +
+            $"\nХобі:\t\t\t{ReadRandomLine(hobbyFilePath)}" +
+            $"\nІнвентар:\t\t{ReadRandomLine(inventoryFilePath)}" +
+            $"\nДодаткова інформація 1:\t{ReadRandomLine(additionalInfoFilePath)}" +
+            $"\nДодаткова інформація 2:\t{ReadRandomLine(additionalInfoFilePath)}";
 
             return character;
         }
@@ -70,5 +70,5 @@ $"\nДодаткова інформація 2:\t{ReadRandomLine(additionalInfoFi
             return lines[randomIndex];
         }
     }
-    }
+}
 
