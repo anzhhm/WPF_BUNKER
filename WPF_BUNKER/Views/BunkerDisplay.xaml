@@ -89,7 +89,7 @@
         <!--Title for Apocalypse-->
         <TextBlock Name="tbApocalipse" Text="Апокаліпсис" FontSize="30" FontWeight="Bold" HorizontalAlignment="Left" VerticalAlignment="Top" Height="40" Width="184" Margin="247,119,0,0" Grid.ColumnSpan="2"/>
         <!--Placeholder for Apocalypse Display-->
-        <TextBlock Name="tbApocalipseDisplay" Grid.Column="0" Grid.RowSpan="4" Text="Апокаліпсис to be displayed here" HorizontalAlignment="Left" Margin="150,266,0,0" Width="Auto" Grid.ColumnSpan="2"/>
+        <TextBlock Name="tbApocalipseDisplay" Grid.Column="0" Grid.RowSpan="4" Text="Апокаліпсис to be displayed here" HorizontalAlignment="Left" Margin="150,266,0,58" Width="Auto" Grid.ColumnSpan="2"/>
         <!--Title for Bunker-->
         <TextBlock Name="tbBunker" Grid.Column="1" Text="Бункер" FontSize="30" FontWeight="Bold" HorizontalAlignment="right" VerticalAlignment="Top" Height="40" Width="123" Margin="442,127,0,0" Grid.ColumnSpan="2"/>
         <!--Placeholder for Bunker Display-->
@@ -137,7 +137,8 @@ HorizontalAlignment="Left" Content="Закінчити гру" FontSize="20"
         </DataGrid>
 
         <!--Timer-->
-        <TextBlock x:Name="tbTime" Text="00:00:00"  HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="24" Grid.Column="1" Grid.Row="3"  Visibility="Collapsed" Foreground="AntiqueWhite" Height="0" Width="0"/>
+        <Button Name="btnStartTimer" Content="Почати відлік" Grid.Row="3" HorizontalAlignment="Left" VerticalAlignment="Bottom" Width="150" Height="35" Margin="33" Click="btnStartTimer_Click" Visibility="Collapsed"/>
+        <TextBlock x:Name="tbTimer" Text="00:00"  HorizontalAlignment="Left" VerticalAlignment="Bottom" FontSize="24" Grid.Column="1" Grid.Row="3"  Visibility="Collapsed" Foreground="AntiqueWhite" Height="35" Width="62" Margin="33"/>
 
         <TextBlock Text="Твій персонаж:" FontSize="20" FontWeight="Bold" Margin="10,10,10,10" Visibility="Hidden" Panel.ZIndex="1"/>
         <Image Name="imgCard" Panel.ZIndex="-1" Grid.ColumnSpan="2" Margin="0,88,0,88" Grid.RowSpan="4" Source="C:\Users\Анжеліка-Марія\source\repos\WPF_BUNKER\WPF_BUNKER\Images\Card.png" Stretch="Fill" Visibility="Collapsed" HorizontalAlignment="Center" Width="804" Grid.Column="1"/>

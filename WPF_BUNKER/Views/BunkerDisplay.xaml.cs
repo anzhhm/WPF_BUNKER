@@ -37,6 +37,9 @@ namespace WPF_BUNKER.Views
         public string cataclysm;
         public string bunker;
 
+        private DispatcherTimer _dispatcherTimer;
+        private TimeSpan _timeRemaining;
+
         public BunkerDisplay(int numOfPlayers, int numOfSurvivors)
         {
             InitializeComponent();
@@ -56,6 +59,11 @@ namespace WPF_BUNKER.Views
             bunker = newGame.GenerateBunker();
             tbBunkerDisplay.Text = bunker;
             playerDataGrid.ItemsSource = characters;
+
+            //timer
+            _dispatcherTimer = new DispatcherTimer();
+            _dispatcherTimer.Interval = TimeSpan.FromSeconds(1);
+            _dispatcherTimer.Tick += DispatcherTimer_Tick;
         }
       
         // Обробник кліку на кнопку "Продовжити"
@@ -103,7 +111,11 @@ namespace WPF_BUNKER.Views
                 playerDataGrid.Visibility = Visibility.Visible;
                 btnGameInfo.Visibility = Visibility.Visible;
 
-                // Відображає повідомлення про закінчення гри
+                // Відображає таймер
+                tbTimer.Visibility = Visibility.Visible;
+                btnStartTimer.Visibility = Visibility.Visible;
+
+                // End the game btn
                 btnEndTheGame.Visibility = Visibility.Visible;
 
             }
@@ -114,8 +126,7 @@ namespace WPF_BUNKER.Views
             // Завершує роботу програми
             Environment.Exit(0);
         }
-        //private int time = 60;
-        //private DispatcherTimer timer;
+        
 
         private void PlayerDataGrid_PreviewMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
@@ -141,6 +152,27 @@ namespace WPF_BUNKER.Views
                 $"\n\n{bunker}" +
                 $"\n\n~Апокаліпсис~:" +
                 $"\n\n{cataclysm}");
+        }
+
+        private void btnStartTimer_Click(object sender, RoutedEventArgs e)
+        {
+            _timeRemaining = TimeSpan.FromMinutes(1);
+            tbTimer.Text = _timeRemaining.ToString(@"mm\:ss");
+            _dispatcherTimer.Start();
+        }
+        private void DispatcherTimer_Tick(object sender, EventArgs e)
+        {
+            if (_timeRemaining > TimeSpan.Zero)
+            {
+                _timeRemaining -= TimeSpan.FromSeconds(1);
+                tbTimer.Text = _timeRemaining.ToString(@"mm\:ss");
+            }
+            else
+            {
+                _dispatcherTimer.Stop();
+                tbTimer.Text = "00:00";
+                MessageBox.Show("Час гравця закінчився!\nПереходьте до наступного");
+            }
         }
     }
 }
