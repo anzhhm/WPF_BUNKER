@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace WPF_BUNKER
+namespace WPF_BUNKER.GameGeneration
 {
     public class Character
     {
@@ -13,7 +13,7 @@ namespace WPF_BUNKER
         public Character()
         {
         }
-       
+
         //Метод генерації характеристик гравця
         public string GenerateCharacter(int characterCount)
         {
@@ -42,7 +42,7 @@ namespace WPF_BUNKER
         }
 
         //Отримання псевдорандомного елементу з масиву атрибутів
-        
+
         private string ReadRandomLine(string filePath)
         {
             // Перевірка чи існує файл

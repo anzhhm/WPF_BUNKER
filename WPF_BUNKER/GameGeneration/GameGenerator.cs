@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace WPF_BUNKER
+namespace WPF_BUNKER.GameGeneration
 {
     public class GameGenerator
     {
@@ -16,8 +16,8 @@ namespace WPF_BUNKER
         public GameGenerator(int N)
         {
             this.N = N;
-            this.Bunker = GenerateBunker();
-            this.Cataclysm = GenerateCataclysm();
+            Bunker = GenerateBunker();
+            Cataclysm = GenerateCataclysm();
         }
 
         //Генерація псевдорандомного бункера з масиву

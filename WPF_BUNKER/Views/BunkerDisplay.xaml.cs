@@ -13,6 +13,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using System.Windows.Threading;
+using WPF_BUNKER.GameGeneration;
 using WPF_BUNKER.Models;
 using WPF_BUNKER.ViewModels;
 
@@ -94,7 +95,7 @@ namespace WPF_BUNKER.Views
                 // Відображення створеного персонажа
                 tbCharacterDisplay.Text = character;
                 // Відображення картки
-                imgCard.Visibility = Visibility.Visible;
+                //imgCard.Visibility = Visibility.Visible;
 
                 // Створення колекції гравців
                 characters.Add(new CharacterViewModel(character));
@@ -105,7 +106,7 @@ namespace WPF_BUNKER.Views
                 // Приховує кнопку генерації картки, коли всі персонажі створені
                 btnGenerateCard.Visibility = Visibility.Collapsed;
                 tbCharacterDisplay.Visibility = Visibility.Collapsed;
-                imgCard.Visibility = Visibility.Collapsed;
+                //imgCard.Visibility = Visibility.Collapsed;
 
                 // Показати табличку
                 playerDataGrid.Visibility = Visibility.Visible;
