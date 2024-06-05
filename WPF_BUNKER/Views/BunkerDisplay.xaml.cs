@@ -44,7 +44,6 @@ namespace WPF_BUNKER.Views
         public BunkerDisplay(int numOfPlayers, int numOfSurvivors)
         {
             InitializeComponent();
-            // Підписка на подію зміни DataContext
             playerDataGrid.PreviewMouseLeftButtonDown += PlayerDataGrid_PreviewMouseLeftButtonDown;
 
             this.numOfPlayers = numOfPlayers;
@@ -61,7 +60,7 @@ namespace WPF_BUNKER.Views
             tbBunkerDisplay.Text = bunker;
             playerDataGrid.ItemsSource = characters;
 
-            //timer
+            // Логіка таймеру
             _dispatcherTimer = new DispatcherTimer();
             _dispatcherTimer.Interval = TimeSpan.FromSeconds(1);
             _dispatcherTimer.Tick += DispatcherTimer_Tick;
@@ -94,8 +93,6 @@ namespace WPF_BUNKER.Views
                 string character = newCharacter.GenerateCharacter(characterCount);
                 // Відображення створеного персонажа
                 tbCharacterDisplay.Text = character;
-                // Відображення картки
-                //imgCard.Visibility = Visibility.Visible;
 
                 // Створення колекції гравців
                 characters.Add(new CharacterViewModel(character));
@@ -106,7 +103,6 @@ namespace WPF_BUNKER.Views
                 // Приховує кнопку генерації картки, коли всі персонажі створені
                 btnGenerateCard.Visibility = Visibility.Collapsed;
                 tbCharacterDisplay.Visibility = Visibility.Collapsed;
-                //imgCard.Visibility = Visibility.Collapsed;
 
                 // Показати табличку
                 playerDataGrid.Visibility = Visibility.Visible;
@@ -131,7 +127,7 @@ namespace WPF_BUNKER.Views
 
         private void PlayerDataGrid_PreviewMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
-            // Find the clicked cell
+            // Заповнити натиснуту клітинку
             DependencyObject depObj = (DependencyObject)e.OriginalSource;
             while (depObj != null && !(depObj is DataGridCell))
             {
@@ -140,9 +136,8 @@ namespace WPF_BUNKER.Views
 
             if (depObj is DataGridCell cell)
             {
-                // Apply your desired style changes here
-                cell.Background = Brushes.AntiqueWhite; // Change background color
-                cell.Foreground = Brushes.Black; // Change foreground color
+                cell.Background = Brushes.AntiqueWhite; // Зміна фону
+                cell.Foreground = Brushes.Black; // Зміна кольору тексту
             }
         }
 

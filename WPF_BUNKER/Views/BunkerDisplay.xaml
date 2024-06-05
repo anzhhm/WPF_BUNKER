@@ -89,7 +89,7 @@
         <!--Title for Apocalypse-->
         <TextBlock Name="tbApocalipse" Text="Апокаліпсис" FontSize="30" FontWeight="Bold" HorizontalAlignment="Left" VerticalAlignment="Top" Height="40" Width="184" Margin="247,119,0,0" Grid.ColumnSpan="2"/>
         <!--Placeholder for Apocalypse Display-->
-        <TextBlock Name="tbApocalipseDisplay" Grid.Column="0" Grid.RowSpan="4" Text="Апокаліпсис to be displayed here" HorizontalAlignment="Left" Margin="150,266,0,58" Width="Auto" Grid.ColumnSpan="2"/>
+        <TextBlock Name="tbApocalipseDisplay" Grid.Column="0" Grid.RowSpan="4" Text="Апокаліпсис to be displayed here" HorizontalAlignment="Left" Margin="150,266,0,33" Width="Auto" Grid.ColumnSpan="2"/>
         <!--Title for Bunker-->
         <TextBlock Name="tbBunker" Grid.Column="1" Text="Бункер" FontSize="30" FontWeight="Bold" HorizontalAlignment="right" VerticalAlignment="Top" Height="40" Width="123" Margin="442,127,0,0" Grid.ColumnSpan="2"/>
         <!--Placeholder for Bunker Display-->
@@ -121,9 +121,6 @@ HorizontalAlignment="Left" Content="Закінчити гру" FontSize="20"
    HorizontalAlignment="Center" Text="" FontSize="20" TextWrapping="Wrap" Grid.ColumnSpan="2" Grid.RowSpan="3"/>
 
         <DataGrid x:Name="playerDataGrid" AutoGenerateColumns="False" Grid.ColumnSpan="4" Grid.RowSpan="4" Visibility="Collapsed" FontSize="15" Margin="40,70,30,100" Background="#140c07">
-            <DataGrid.Resources>
-
-            </DataGrid.Resources>
             <DataGrid.Columns>
                 <DataGridTextColumn Header="         Гравець        " Binding="{Binding Player}" Width="*" ElementStyle="{StaticResource WrappedTextColumnStyle}"  CellStyle="{StaticResource DataGridFirstRowCellStyle}"  HeaderStyle="{StaticResource DataGridColumnHeaderStyle}"/>
                 <DataGridTextColumn Header="      Стать та вік     " Binding="{Binding SexAndAge}" Width="*" ElementStyle="{StaticResource WrappedTextColumnStyle}" CellStyle="{StaticResource ShowOnClickStyle}"  HeaderStyle="{StaticResource DataGridColumnHeaderStyle}"/>

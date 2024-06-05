@@ -16,11 +16,6 @@ using WPF_BUNKER.ViewModels;
 
 namespace WPF_BUNKER.Views
 {
-    /// <summary>
-    /// Interaction logic for MainPage.xaml
-    /// </summary>
-
-    
         public partial class MainPage : Window
         {
             public MainPage()

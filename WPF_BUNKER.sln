@@ -5,8 +5,6 @@ VisualStudioVersion = 17.8.34511.84
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WPF_BUNKER", "WPF_BUNKER\WPF_BUNKER.csproj", "{17743C55-98DC-4B19-A509-C41029A319F7}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "FavoriteCharacters", "FavoriteCharacters", "{B5434448-DC15-4EDC-A301-49BB5EC6A1C7}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
